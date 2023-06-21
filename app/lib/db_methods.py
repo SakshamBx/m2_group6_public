@@ -113,6 +113,7 @@ def get_tour(db, mongo_db, tour_id, db_type):
         tour = mongo_db.tours.find_one({'_id': tour_id})
         return tour
     
+# Mariam use case 1 -create booking-----------------------------------------------
 def create_booking(db, mongo_db, user_id, tour_id, booking_date, db_type):
     booking_date = get_tour(db, mongo_db, tour_id, db_type)['date']
     
@@ -123,3 +124,13 @@ def create_booking(db, mongo_db, user_id, tour_id, booking_date, db_type):
     #mongo
     elif db_type == 'mongo':
         mongo_db.user_tour.insert_one({'user_id': user_id, 'tour_id': tour_id, 'booking_date': booking_date})
+
+# Mariam use case 2 -follow user-----------------------------------------------
+def follow_user(db, mongo_db, user_id, user_id_to_follow, db_type):
+    #sql 
+    if db_type == 'sql':
+        db.execute('INSERT INTO user_following (user_follower_id, user_followee_id) VALUES (?, ?)', (user_id, user_id_to_follow))
+        db.commit()
+    #mongo
+    elif db_type == 'mongo':
+        mongo_db.user_follow.insert_one({'user_id': user_id, 'user_id_to_follow': user_id_to_follow})

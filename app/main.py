@@ -29,7 +29,7 @@ db = mysql.connector.connect(**sql_db)
 # empty mongogb db created and initialized
 mongo_user = pymongo.MongoClient("mongodb://user:password@mongo:27017/")
 mongo_db = mongo_user["mongo_imse"]
-nosql_methods.reset_nosql(mongo_db=mongo_db)
+nosql_methods.reset_nosql(mongo_db)
 
 
 def db_check(f):
@@ -259,4 +259,4 @@ def follow(followee_id):
 def bookings(user_id):
     # a user's bookings page
     bookings_data = db_methods.get_bookings(db, mongo_db, user_id, db_type)
-    return render_template("bookings.html", title="Bookings", bookings_data=bookings_data)
+    return render_template("booking.html", title="Bookings", bookings_data=bookings_data)
