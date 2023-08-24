@@ -18,16 +18,13 @@ db_type = "sql"
 
 # empty sql db created
 sql_db = {
-    "user": "root",
-    "password": "pass",
+    "user": "admin",
+    "password": "password",
     "database": "sql_imse",
-    "host": "localhost",
-    "port": "3306",
+    "host": "sql",
+    "port": "8008",
 }
 db = mysql.connector.connect(**sql_db)
-# sql_db_init.sql_empty_db(db)
-# sql_db_init.sql_create_tables(db)
-# sql_db_init.sql_insert_data(db)
 
 # empty mongogb db created and initialized
 mongo_user = pymongo.MongoClient("mongodb://user:password@mongo:27017/")
